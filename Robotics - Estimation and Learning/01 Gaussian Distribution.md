@@ -36,3 +36,26 @@ p(x) = \frac{1}{\sqrt{2\pi\sigma}}\exp\Big\{-\frac{(x-\mu)^2}{\sqrt{2\sigma^2}}\
 ![Conversely, a smaller variance tightens the curve and the peak value becomes bigger as well. So that the integral remains 1.](images/gaussian_distribution_05.png)
 
 ![We have seen the two parameters of the Gaussian distribution. The mean mu represents the center of the distribution. And the variance sigma squared represents the spread of the distribution.](images/gaussian_distribution_06.png)
+
+
+## Maximum Likelihood Estimate (MLE)
+We are going to learn how we can compute an estimate of the Gaussian model parameters from observed data.
+Gaussian model has two parameters, mean and variance. We are going to use the term likelihood often throughout the course. Let's talk about its definition.
+
+![Likelihood is the probability of an observation given the model parameters.](images/gaussian_distribution_07.png)
+
+The subscript **$i$** indicates one particular observation **$x_{i}$** among multiple observations of **$x$**. The important thing I want to point is that we have the data, what is to be determined are the parameters. In our case, we are using a Gaussian model. Thus, the parameters are **$\mu$** and **$\sigma$**.
+
+**We are interested in obtaining the parameters of our model that maximizes the likelihood of a given set of observations.**
+
+![If we express what I just said mathematically, we can write like this.](images/gaussian_distribution_08.png)
+
+![Using a property of the logarithmic function. We can write a log likelihood exactly like this.](images/gaussian_distribution_09.png)
+
+![With the expanded notation of the log likelihood, we may rewrite the problem like this.](images/gaussian_distribution_10.png)
+
+![And we can change the formula into a minimization problem by changing max to min and taking the negatives of all the terms. Why switch to minimization? Well, two problems are equivalent, but writing optimization problem as a minimization is the standard form and we are following that to be consistent in notation. Let's call this whole parts J. This is a common symbol to represent a cosine function that we want to minimize.](images/gaussian_distribution_11.png)
+
+![If we apply the optimality condition for convex optimization, the first order derivative of **$J$** with respect to mu should be zero. From this, we can compute the maximum likelihood estimate of mu and we are going to write it as **$\hat{\mu}$**. Once again, we apply the same optimality condition to compute the estimate of **$\sigma$**. For this, we can use the value of **$\hat{\mu}$** in place of **$\mu$** as a parameter.](images/gaussian_distribution_12.png)
+
+![The final solution we get for computation is relatively simple. **$\hat{\mu}$** is exactly the sample mean the average of the data, which is a natural estimate of data. Also, **$\hat{\sigma}^2$** is just a sample variance.](images/gaussian_distribution_13.png)
